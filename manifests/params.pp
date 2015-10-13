@@ -4,6 +4,7 @@ class authconfig::params () {
   $packages           = ['authconfig']
   $cache_packages     = ['nscd']
   $ldap_packages      = $::operatingsystemmajrelease ? {
+    5       => ['openldap-clients', 'nss_ldap-253'],
     7       => ['openldap-clients', 'nss-pam-ldapd'],
     default => ['openldap-clients', 'nss-pam-ldapd', 'pam_ldap']
   }
@@ -16,6 +17,11 @@ class authconfig::params () {
   $nis_services       = ['ypbind']
   $services           = []
   $cache_services     = ['nscd']
-  $ldap_services      = ['nslcd']
+
+  # RHEL 5 Doesn't have nslcd package available.
+  $ldap_services      = $::operatingsystemmajrelease ? {
+    5       => [],
+    default => ['nslcd'],
+  }   
 
 }
