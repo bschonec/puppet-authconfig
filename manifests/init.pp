@@ -192,7 +192,8 @@ class authconfig (
       }
 
       if $ldapserver {
-        $ldapserver_val = "--ldapserver='${ldapserver}'"
+        $ldapserver_real = join(any2array($ldapserver), ',')
+        $ldapserver_val = "--ldapserver=${ldapserver_real}"
       }
 
       $sssd_flg = $sssd ? {
@@ -293,7 +294,8 @@ class authconfig (
       }
 
       if $krb5kadmin {
-        $krb5kadmin_val = "--krb5adminserver=${krb5kadmin}"
+        $krb5kadmin_real = join(any2array($krb5kadmin), ',')
+        $krb5kadmin_val = "--krb5adminserver=${krb5kadmin_real}"
       }
 
       # Winbind
