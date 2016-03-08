@@ -404,25 +404,13 @@ class authconfig (
       }
 
       # construct the command
-      $ldap_flags = $ldap ? {
-        true    => "${ldap_flg} ${ldapauth_flg} ${ldaptls_flg} ${ldapbasedn_val} ${ldaploadcacert_val} ${ldapserver_val}",
-        default => '',
-      }
+      $ldap_flags = "${ldap_flg} ${ldapauth_flg} ${ldaptls_flg} ${ldapbasedn_val} ${ldaploadcacert_val} ${ldapserver_val}"
 
-      $nis_flags = $nis ? {
-        true    => "${nis_flg} ${nisdomain_val} ${nisserver_val}",
-        default => '',
-      }
+      $nis_flags = "${nis_flg} ${nisdomain_val} ${nisserver_val}"
 
-      $krb5_flags = $krb5 ? {
-        true    => "${krb_flg} ${krb5realm_val} ${krb_kdc} ${krb5kadmin_val} ${krb5kdcdns_flg} ${krb5realmdns_flg}",
-        default => '',
-      }
+      $krb5_flags = "${krb_flg} ${krb5realm_val} ${krb_kdc} ${krb5kadmin_val} ${krb5kdcdns_flg} ${krb5realmdns_flg}"
 
-      $winbind_flags = $winbind ? {
-        true    => "${winbind_flg} ${winbindauth_flg} ${smbsecurity_val} ${smbrealm_val} ${smbworkgroup_val} ${winbindjoin_val} ${smbservers_val}",
-        default => '',
-      }
+      $winbind_flags = "${winbind_flg} ${winbindauth_flg} ${smbsecurity_val} ${smbrealm_val} ${smbworkgroup_val} ${winbindjoin_val} ${smbservers_val}"
 
       $extra_flags = "${preferdns_flg} ${forcelegacy_flg} ${pamaccess_flg}"
 
